@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css">
+  <script src="webjars/bootstrap/5.3.0/js/bootstrap.bundle.js"></script>
+  <style>
+    .navbar-custom {
+      min-height: 100px; /* Remplacez cette valeur par la hauteur souhaitée */
+      background-color: #457b9d; /* Couleur de fond de la barre de navigation */
+    }
+    .navbar-title {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      font-family: -apple-system;
+    }
+    .navbar-title:hover{
+      transform: scale(1.1);
+      transition: transform 0.5s ease-in-out;
+    }
+    .navbar-search-input {
+      background-color: wheat;
+      color: black;
+      border-color: black;
+    }
+    .navbar-search-button {
+      background-color: wheat !important;
+      color: black;
+      border-color: black;
+    }
+    .navbar-search-button:hover{
+      transform: scale(1.1);
+      transition: transform 0.5s ease-in-out;
+    }
+    .navbar-search-button span {
+      color: black;
+    }
+    /* Style pour agrandir les liens au survol */
+    .navbar-nav li.nav-item:hover {
+      transform: scale(1.1);
+      transition: transform 0.4s ease-in-out;
+    }
+    .navi:hover{
+      transform: scale(1.01);
+      transition: transform 0.5s ease-in-out;
+    }
+    /* Modification pour la couleur du menu */
+    .navbar-nav li.nav-item a.nav-link,
+    .navbar-nav li.nav-item a.nav-link:hover {
+      color: white;
+    }
+  </style>
+  <title>Liste des Clients</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index">
+      <span class="navbar-title">CLIENTS HÔTEL SAHA BEACH</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            CLIENTS
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" th:href="@{/formClients}">Nouveau</a></li>
+            <li><a class="dropdown-item" th:href="@{index}">Chercher</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/formClients}" href="#">ARRIVEE/DEPART</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">GESTIONNAIRE</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav" >
+<!--        ce ul va etre afficher si on est authentifier   sec:authorize="isAuthenticated()"-->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            <span sec:Authentication="name"></span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" th:href="@{/logout}">DECONNEXION</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section layout:fragment="content1">
+  <!-- Contenu de la section -->
+</section>
+</body>
+</html>
+
+
+
+

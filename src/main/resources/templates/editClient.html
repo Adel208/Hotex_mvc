@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css">
+  <title>Edit Clients</title>
+  <style>
+    body {
+      background-color: lightblue;
+    }
+    .btn-transparent {
+      background-color: transparent;
+      border: 1px solid gray;
+      color: black;
+      opacity: 0.7;
+    }
+    .btn-transparent:hover {
+      background-color: black;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+<div layout:fragment="content1">
+
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="col-md-12">
+      <form method="post" th:action="@{save}" class="row">
+        <div class="col-md-6">
+          <div class="row mb-3">
+
+            <div class="col-md-6">
+              <label for="titre" class="form-label">Titre</label>
+              <input id="titre" class="form-control" type="text" name="titre" th:value="${utilisateur.titre}">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="nom" class="form-label">Nom</label>
+              <input id="nom" class="form-control" type="text" name="nom" th:value="${utilisateur.nom}">
+            </div>
+            <div class="col-md-6">
+              <label for="prenom" class="form-label">Prénom</label>
+              <input id="prenom" class="form-control" type="text" name="prenom" th:value="${utilisateur.prenom}">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="dateArrivee" class="form-label">Date d'Arrivée</label>
+              <input id="dateArrivee" class="form-control" type="date" name="dateArrivee" th:value="${utilisateur.dateArrivee}">
+            </div>
+            <div class="col-md-6">
+              <label for="dateDepart" class="form-label">Date de Départ</label>
+              <input id="dateDepart" class="form-control" type="date" name="dateDepart" th:value="${utilisateur.dateDepart}">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="petitDejeuner" class="form-label">Petit Déjeuner</label>
+              <input id="petitDejeuner" class="form-check-input" type="checkbox" name="petitDejeuner" th:checked="${utilisateur.petitDejeuner}">
+            </div>
+            <div class="col-md-6">
+              <label for="numeroDeChambre" class="form-label">Numéro de Chambre</label>
+              <input id="numeroDeChambre" class="form-control" type="text" name="numeroDeChambre" th:value="${utilisateur.numeroDeChambre}">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="adresse" class="form-label">Adresse</label>
+              <input id="adresse" class="form-control" type="text" name="adresse" th:value="${utilisateur.adresse}">
+            </div>
+            <div class="col-md-6">
+              <label for="numeroTelephone" class="form-label">Numéro de Téléphone</label>
+              <input id="numeroTelephone" class="form-control" type="text" name="numeroTelephone" th:value="${utilisateur.numeroTelephone}">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="adresseMail" class="form-label">Adresse Mail</label>
+              <input id="adresseMail" class="form-control" type="text" name="adresseMail" th:value="${utilisateur.adresseMail}">
+            </div>
+            <div class="col-md-6">
+              <label for="dateInscription" class="form-label">Date d'Inscription</label>
+              <input id="dateInscription" class="form-control" type="date" name="dateInscription" th:value="${utilisateur.dateInscription}">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="statut" class="form-label">Statut</label>
+              <input id="statut" class="form-control" type="text" name="statut" th:value="${utilisateur.statut}">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-transparent">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

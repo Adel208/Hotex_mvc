@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Clients</title>
+
+    <style>
+        body {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            color: #999; /* Texte en blanc */
+        }
+
+        .btn{
+            color:#999;
+            background:rgba(0, 0, 0, 0.5);
+            padding:10px 20px;
+            font-size:12px;
+            text-decoration:none;
+            letter-spacing:2px;
+            text-transform:uppercase;
+        }
+
+        .btn:hover{
+            border:none;
+            background:rgba(0, 0, 0, 0.4);
+            background:#fff;
+            padding:20px 20px; #000;
+            color:#1b1b1b;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1px;
+            border-radius: 10px;
+        }
+
+        .card-header {
+            color: #c0c0c0;
+            font-weight: 100;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 60px;
+        }
+
+        .table {
+            background: rgba(0, 0, 0, 0.5);
+            color: #999;
+        }
+
+        th, td {
+            border: none;
+            color: #999; /* Texte en blanc */
+            padding: 5px 5px;
+        }
+
+        th {
+            text-transform: uppercase;
+        }
+
+        .table th {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .table tbody tr:nth-child(odd) {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .table th, .table td {
+            border-top: none;
+            border-bottom: 1px solid #c0c0c0;
+        }
+
+        .pagination {
+            display: flex;
+            list-style: none;
+        }
+
+        .pagination li {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>HOTEX MC</h1>
+    <a href="#" class="btn">Tableau de bord</a>
+    <a href="#" class="btn">Arrivée</a>
+    <a href="#" class="btn">Réservation</a>
+    <a href="#" class="btn">Météo</a>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+    <div class="card-header">LISTE DES CLIENTS</div>
+    <div class="card-body">
+        <form method="get" th:action="@{/index}" class="mb-3">
+            <label></label>
+            <input type="text" name="keyword" th:value="${keyword}">
+            <button type="submit" class="btn btn-wheat">Chercher</button>
+        </form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Nombre de Personnes</th>
+                <th>Chambre Type</th>
+                <th>Date d'Arrivée</th>
+                <th>Date de Départ</th>
+                <th>Petit Déjeuner</th>
+                <th>Numéro de Chambre</th>
+                <th>Adresse</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Utilisez Thymeleaf pour itérer sur vos données ici -->
+            <tr th:each="utilisateur : ${listClients}">
+                <td th:text="${utilisateur.id}"></td>
+                <td th:text="${utilisateur.titre}"></td>
+                <td th:text="${utilisateur.nom}"></td>
+                <td th:text="${utilisateur.prenom}"></td>
+                <td th:text="${utilisateur.nbrePersonne}"></td>
+                <td th:text="${utilisateur.chambreType}"></td>
+                <td th:text="${#temporals.format(utilisateur.dateArrivee, 'dd-MM-yyyy')}"></td>
+                <td th:text="${#temporals.format(utilisateur.dateDepart, 'dd-MM-yyyy')}"></td>
+                <td th:text="${utilisateur.petitDejeuner}"></td>
+                <td th:text="${utilisateur.numeroDeChambre}"></td>
+                <td th:text="${utilisateur.adresse}"></td>
+                <td sec:authorize="hasRole('ADMIN')">
+                    <form th:action="@{/delete}" method="get">
+                        <input type="hidden" name="id" th:value="${utilisateur.id}" />
+                        <input type="hidden" name="keyword" th:value="${keyword}" />
+                        <input type="hidden" name="page" th:value="${currentPage}" />
+                        <button onclick="return confirm('Etes vous sur de vouloir supprimer ce utilisateur?')" class="btn btn-wheat" type="submit">DEPART</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li th:each="page, status : ${pages}">
+                <a th:class="${status.index==currentPage ? 'btn btn-wheat' : 'btn btn-outline-wheat'}"
+                   th:text="${status.index}"
+                   th:href="@{/index(page=${status.index}, keyword=${keyword})}"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
