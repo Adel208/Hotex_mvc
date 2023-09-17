@@ -1,4 +1,5 @@
 package ma.enset.clientsmvc.entities;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,15 +18,11 @@ public class Chambre {
     private int etage;
     private int nombrePlaces;
 
-    public Chambre(Long id, String numeroChambre, int etage, int nombrePlaces) {
-        this.id = id;
-        this.numeroChambre = numeroChambre;
-        this.etage = etage;
-        this.nombrePlaces = nombrePlaces;
-    }
-
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
+    // Les getters et setters sont générés automatiquement par Lombok
+
+    // Vous pouvez ajouter d'autres méthodes ou annotations ici si nécessaire
 }

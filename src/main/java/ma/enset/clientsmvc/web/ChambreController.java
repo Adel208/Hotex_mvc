@@ -1,4 +1,5 @@
 package ma.enset.clientsmvc.web;
+
 import lombok.AllArgsConstructor;
 import ma.enset.clientsmvc.entities.Chambre;
 import ma.enset.clientsmvc.repositories.ChambreRepository;
@@ -12,15 +13,19 @@ import java.util.List;
 @AllArgsConstructor
 public class ChambreController {
     private final ChambreRepository chambreRepository;
-    @RequestMapping(method = RequestMethod.GET)
+
+    @GetMapping
     public String listerChambres(Model model) {
         List<Chambre> chambres = chambreRepository.findAll();
         model.addAttribute("chambres", chambres);
+        model.addAttribute("chambre", new Chambre()); // Ajout d'un nouvel objet Chambre pour le formulaire
         return "chambre";
     }
+
     @PostMapping("/ajouterChambre")
-    public String ajouterChambre(Chambre chambre) {
+    public String ajouterChambre(@ModelAttribute Chambre chambre) { // Utilisation de @ModelAttribute pour lier le formulaire à l'objet Chambre
         chambreRepository.save(chambre);
-        return "redirect:/chambre"; // Modifiez la redirection ici
+        return "redirect:/chambre";
     }
+
 }

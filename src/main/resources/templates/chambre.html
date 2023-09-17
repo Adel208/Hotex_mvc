@@ -1,134 +1,91 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"layout:decorate="template1">
 <head>
     <meta charset="UTF-8">
     <title>Gestion des Chambres</title>
-
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.2s ease; /* Transition générale */
+        }
+
+        /* Styles pour le corps du formulaire */
         body {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
+            font-family: 'Oswald', sans-serif; /* Police de caractères du deuxième formulaire */
+            background: #1b1b2b; /* Couleur de fond du deuxième formulaire */
+            padding: 75px;
             text-align: center;
-            font-family: 'Oswald', sans-serif;
-            color: #999;
+        }
+
+        h1 {
+            color: #c0c0c0;
+            font-weight: 100;
+        }
+
+        /* Styles pour le formulaire */
+        form {
+            background: #25252b; /* Couleur de fond des champs de formulaire */
+            border-radius: 7px;
+            overflow: hidden;
+            width: 400px; /* Largeur du formulaire */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        label {
+            color: #777;
+            font-weight: 400;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            font-weight: 300;
+        }
+
+        input[type="text"] {
+            background: #25252b; /* Couleur de fond des champs de formulaire */
+            border: none;
+            border-bottom: 1px solid #777; /* Couleur de la bordure inférieure des champs de formulaire */
+            color: #b3b3b3;
+            font-weight: 300;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
         }
 
         .btn {
-            color: #b3b3b3;
-            background: rgba(0, 0, 0, 0.1);
+            color: #b3b3b3; /* Couleur du texte des boutons */
+            background: rgba(0, 0, 0, 0.1); /* Couleur de fond des boutons */
             border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
+            border-radius: 10px;
+            padding: 10px 20px;
             font-size: 12px;
             text-decoration: none;
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s ease; /* Transition des boutons */
         }
 
         .btn:hover {
-            background: #fff;
-            color: #1b1b1b;
-        }
-
-        .container {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1px;
-            border-radius: 10px;
-        }
-
-        .card-header {
-            color: #c0c0c0;
-            font-weight: 100;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 80px;
-        }
-
-        .table {
-            background: rgba(0, 0, 0, 0.5);
-            color: #999;
-        }
-
-        th, td {
-            border: none;
-            color: #999;
-            padding: 5px 5px;
-        }
-
-        th {
-            text-transform: uppercase;
-        }
-
-        .table th {
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .table tbody tr:nth-child(odd) {
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-
-        .table tbody tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.3);
-        }
-
-        .table th, .table td {
-            border-top: none;
-            border-bottom: 1px solid #c0c0c0;
-        }
-
-        .pagination {
-            display: flex;
-            list-style: none;
-        }
-
-        .pagination li {
-            margin-right: 10px;
-        }
-
-        .form-container {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .form-container label {
-            color: #fff;
-            margin-right: 10px;
-            font-size: 10px;
-        }
-
-        .form-container input[type="text"],
-        .form-container input[type="number"] {
-            padding: 3px;
-            border-radius: 5px;
-            border: none;
-            background: rgba(0, 0, 0, 0.1);
-            color: #999;
-            margin-bottom: 5px;
-            font-size: 12px;
-            width: 40px; /* Largeur réduite pour deux chiffres */
-        }
-
-        .form-container .btn-save {
-            background: #1b1b1b;
-            color: #fff;
-            font-size: 10px;
-            padding: 3px 6px;
+            background: #fff; /* Couleur de fond des boutons au survol */
+            color: #1b1b1b; /* Couleur du texte des boutons au survol */
         }
     </style>
 </head>
 <body>
-<link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+<div layout:fragment="content1">
 <div class="container">
+    <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+    <br>
+    <br>
     <div class="card-header">Gestion des Chambres</div>
     <div class="card-body">
         <div class="form-container">
-            <form method="post" th:action="@{/chambre/ajouterChambre}" class="mb-3">
+            <!-- Formulaire pour ajouter une chambre -->
+            <form method="post" th:action="@{/chambre/ajouterChambre}" th:object="${chambre}" class="mb-3">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <label for="numeroChambre" style="font-size: 10px;">N° Chambre:</label>
                 <input type="text" id="numeroChambre" name="numeroChambre" th:field="*{numeroChambre}" required maxlength="2">
                 <label for="etage" style="font-size: 10px;">Étage:</label>
@@ -161,6 +118,7 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>
 </body>
 </html>

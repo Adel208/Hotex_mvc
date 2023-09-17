@@ -15,9 +15,11 @@ import java.util.List;
 @Controller
 public class ClientsController {
     private final ClientRepository clientRepository;
+
     public ClientsController(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
+
     @GetMapping("/index")
     public String clients(Model model,
                           @RequestParam(name = "page", defaultValue = "0") int page,
@@ -31,38 +33,48 @@ public class ClientsController {
         model.addAttribute("keyword", keyword); // Mot-clé de recherche
         return "clients";
     }
+
     @GetMapping("/delete")
     public String delete(@RequestParam Long id,
                          @RequestParam String keyword,
                          @RequestParam int page) {
         clientRepository.deleteById(id);
-        // Redirige vers la page d'index avec la pagination et le mot-clé
         return "redirect:/index?page=" + page + "&keyword=" + keyword;
     }
+
     @GetMapping("/")
     public String home() {
         return "home";
     }
+
     @GetMapping("/clients")
     @ResponseBody
     public List<Utilisateur> listClient() {
         return clientRepository.findAll();
     }
+
     @GetMapping("/formClients")
+
     public String formClients(Model model) {
-        // Ajoute un nouvel utilisateur au modèle pour le formulaire
         model.addAttribute("utilisateur", new Utilisateur());
         return "formClients";
     }
-    @PostMapping("/save")
-    public String save(@Valid Utilisateur utilisateur,
-                       BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "formClients"; // Recharge le formulaire avec des messages d'erreur
-        }
-        clientRepository.save(utilisateur);
-        return "redirect:/clients";
+
+    @GetMapping("/formulaireConnexion")
+    public String formulaireConexion(Model model) {
+        model.addAttribute("utilisateur", new Utilisateur());
+        return "formulaireConnexion";
     }
+
+
+    @GetMapping("/arrivee")
+    public String arrivee(Model model) {
+        model.addAttribute("utilisateur", new Utilisateur());
+        return "arrivee";
+    }
+
+
+
     @GetMapping("/editClient")
     public String editClient(Model model,
                              @RequestParam Long id,
@@ -72,7 +84,18 @@ public class ClientsController {
         if (utilisateur == null) {
             throw new RuntimeException("Utilisateur introuvable");
         }
-        model.addAttribute("utilisateur", utilisateur);
+        model.addAttribute("utilisateur",  utilisateur);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("currentPage", page);
         return "editClient";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute("utilisateur") @Valid Utilisateur utilisateur, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "editClient";
+        }
+        clientRepository.save(utilisateur);
+        return "redirect:/index";
     }
 }

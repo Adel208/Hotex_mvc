@@ -1,110 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="template1">
 <head>
   <meta charset="UTF-8">
   <title>Liste des Clients</title>
-
-
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.2s ease; /* Transition générale */
+    }
+
+    /* Styles pour le corps du formulaire */
     body {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 20px;
+      font-family: 'Oswald', sans-serif; /* Police de caractères du deuxième formulaire */
+      background: #1b1b2b; /* Couleur de fond du deuxième formulaire */
+      padding: 75px;
       text-align: center;
-      font-family: 'Oswald', sans-serif;
-      color: #999; /* Texte en blanc */
     }
 
-    .btn{
-      color:#999;
-      background:rgba(0, 0, 0, 0.5);
-      padding:10px 20px;
-      font-size:12px;
-      text-decoration:none;
-      letter-spacing:2px;
-      text-transform:uppercase;
-    }
-
-    .btn:hover{
-      border:none;
-      background:rgba(0, 0, 0, 0.4);
-      background:#fff;
-      padding:20px 20px; #000;
-      color:#1b1b1b;
-    }
-
-    .container {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 1px;
-      border-radius: 10px;
-    }
-
-    .card-header {
+    h1 {
       color: #c0c0c0;
       font-weight: 100;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 60px;
     }
 
-    .table {
-      background: rgba(0, 0, 0, 0.5);
-      color: #999;
+    /* Styles pour le formulaire */
+    form {
+      background: #25252b; /* Couleur de fond des champs de formulaire */
+      border-radius: 7px;
+      overflow: hidden;
+      width: 400px; /* Largeur du formulaire */
+      margin: 0 auto;
+      padding: 20px;
     }
 
-    th, td {
+    label {
+      color: #777;
+      font-weight: 400;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      font-weight: 300;
+    }
+
+    input[type="text"] {
+      background: #25252b; /* Couleur de fond des champs de formulaire */
       border: none;
-      color: #999; /* Texte en blanc */
-      padding: 5px 5px;
+      border-bottom: 1px solid #777; /* Couleur de la bordure inférieure des champs de formulaire */
+      color: #b3b3b3;
+      font-weight: 300;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
     }
 
-    th {
+    .btn {
+      color: #b3b3b3; /* Couleur du texte des boutons */
+      background: rgba(0, 0, 0, 0.1); /* Couleur de fond des boutons */
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 12px;
+      text-decoration: none;
+      letter-spacing: 2px;
       text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease; /* Transition des boutons */
     }
 
-    .table th {
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .table tbody tr:nth-child(odd) {
-      background-color: rgba(0, 0, 0, 0.2);
-    }
-
-    .table tbody tr:nth-child(even) {
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-
-    .table th, .table td {
-      border-top: none;
-      border-bottom: 1px solid #c0c0c0;
-    }
-
-    .pagination {
-      display: flex;
-      list-style: none;
-    }
-
-    .pagination li {
-      margin-right: 10px;
+    .btn:hover {
+      background: #fff; /* Couleur de fond des boutons au survol */
+      color: #1b1b1b; /* Couleur du texte des boutons au survol */
     }
   </style>
 </head>
-
 <body>
-
+<div layout:fragment="content1">
 <div class="container">
-
-  <h1>HOTEX MC</h1>
-  <a href="#" class="btn">Tableau de bord</a>
-  <a href="#" class="btn">Arrivée</a>
-  <a href="#" class="btn">Réservation</a>
-  <a href="#" class="btn">Météo</a>
   <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
-  <div class="card-header">LISTE DES CLIENTS</div>
+  <br>
+  <br>
+  <div class="card-header" th:class="btn">LISTE DES CLIENTS</div>
   <div class="card-body">
     <form method="get" th:action="@{/index}" class="mb-3">
       <label></label>
-      <input type="text" name="keyword" th:value="${keyword}">
+      <input type="text" name="keyword" th:field="${keyword}">
       <button type="submit" class="btn btn-wheat">Chercher</button>
     </form>
     <table class="table">
@@ -145,6 +127,7 @@
             <input type="hidden" name="page" th:value="${currentPage}" />
             <button onclick="return confirm('Etes vous sur de vouloir supprimer ce utilisateur?')" class="btn btn-wheat" type="submit">DEPART</button>
           </form>
+          <a th:href="'/editClient?id=' + ${utilisateur.id} + '&keyword=' + ${keyword} + '&page=' + ${currentPage}"class="btn btn-wheat" type="submit">Modifier</a>
         </td>
       </tr>
       </tbody>
@@ -157,6 +140,7 @@
       </li>
     </ul>
   </div>
+</div>
 </div>
 </body>
 </html>

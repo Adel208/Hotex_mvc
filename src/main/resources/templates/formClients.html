@@ -1,82 +1,117 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="template1">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"layout:decorate="template1">
 
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.3.0/css/bootstrap.min.css">
   <title>Modifier les Informations du Client</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.2s ease; /* Transition générale */
+    }
+
+    /* Styles pour le corps du formulaire */
     body {
-      background-color: lightblue;
+      font-family: 'Oswald', sans-serif; /* Police de caractères du deuxième formulaire */
+      background: #1b1b2b; /* Couleur de fond du deuxième formulaire */
+      padding: 75px;
+      text-align: center;
     }
 
-    .btn-transparent {
-      background-color: wheat;
-      border: 1px solid black;
-      color: black;
-      opacity: 0.7;
+    h1 {
+      color: #c0c0c0;
+      font-weight: 100;
     }
 
-    .btn-transparent:hover {
-      background-color: black;
-      color: white;
+    /* Styles pour le formulaire */
+    form {
+      background: #25252b; /* Couleur de fond des champs de formulaire */
+      border-radius: 7px;
+      overflow: hidden;
+      width: 400px; /* Largeur du formulaire */
+      margin: 0 auto;
+      padding: 20px;
     }
 
-    .card-header {
-      font-family: -apple-system;
-      color: white;
+    label {
+      color: #777;
+      font-weight: 400;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      font-weight: 300;
     }
 
-    .form-separator {
-      border-top: 1px solid white;
-      margin-top: 20px;
+    input[type="text"] {
+      background: #25252b; /* Couleur de fond des champs de formulaire */
+      border: none;
+      border-bottom: 1px solid #777; /* Couleur de la bordure inférieure des champs de formulaire */
+      color: #b3b3b3;
+      font-weight: 300;
+      width: 100%;
+      padding: 10px;
       margin-bottom: 20px;
+    }
+
+    .btn {
+      color: #b3b3b3; /* Couleur du texte des boutons */
+      background: rgba(0, 0, 0, 0.1); /* Couleur de fond des boutons */
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 12px;
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease; /* Transition des boutons */
+    }
+
+    .btn:hover {
+      background: #fff; /* Couleur de fond des boutons au survol */
+      color: #1b1b1b; /* Couleur du texte des boutons au survol */
     }
   </style>
 </head>
-
 <body>
 <div layout:fragment="content1">
   <br>
   <div class="container mt-4">
-    <h3 class="card-header">ARRIVÉE / DÉPART</h3>
-    <div class="form-separator"></div> <!-- Séparateur de couleur blanche -->
 
+    <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+    <br>
+    <h3 class="card-header" th:class="btn">ARRIVEE CLIENT</h3>
     <div class="container d-flex justify-content-center align-items-center vh-100">
       <div class="col-md-12">
         <form th:object="${utilisateur}" method="post" th:action="@{/save}" class="row">
           <div class="col-md-6">
             <div class="row mb-3">
               <div class="col-md-6">
-                <label for="id">ID</label>
-                <input class="form-control" type="text" id="id" th:field="*{id}">
-              </div>
-              <div class="col-md-6">
                 <label for="titre" class="form-label">Titre</label>
                 <input class="form-control" type="text" id="titre" th:field="*{titre}">
               </div>
-            </div>
-            <div class="row mb-3">
               <div class="col-md-6">
                 <label for="nom" class="form-label">Nom</label>
                 <input class="form-control" type="text" id="nom" th:field="*{nom}">
               </div>
+            </div>
+            <div class="row mb-3">
               <div class="col-md-6">
                 <label for="prenom" class="form-label">Prénom</label>
                 <input class="form-control" type="text" id="prenom" th:field="*{prenom}">
               </div>
-            </div>
-            <div class="row mb-3">
               <div class="col-md-6">
                 <label for="dateArrivee" class="form-label">Date d'Arrivée</label>
                 <input class="form-control" type="date" id="dateArrivee" th:field="*{dateArrivee}">
               </div>
+            </div>
+            <div class="row mb-3">
               <div class="col-md-6">
                 <label for="dateDepart" class="form-label">Date de Départ</label>
                 <input class="form-control" type="date" id="dateDepart" th:field="*{dateDepart}">
               </div>
-            </div>
-            <div class="row mb-3">
               <div class="col-md-6">
                 <label for="petitDejeuner" class="form-label">Petit Déjeuner</label>
                 <select class="form-select" id="petitDejeuner" th:field="*{petitDejeuner}">
@@ -88,12 +123,12 @@
                   <option value="5">5 Petits Déjeuners</option>
                 </select>
               </div>
+            </div>
+            <div class="row mb-3">
               <div class="col-md-6">
                 <label for="numeroDeChambre" class="form-label">Numéro de Chambre</label>
                 <input class="form-control" type="text" id="numeroDeChambre" th:field="*{numeroDeChambre}">
               </div>
-            </div>
-            <div class="row mb-3">
               <div class="col-md-6">
                 <label for="nbrePersonne" class="form-label">Nombre de Personnes</label>
                 <select class="form-select" id="nbrePersonne" th:field="*{nbrePersonne}">
@@ -105,6 +140,8 @@
                   <option value="5">5</option>
                 </select>
               </div>
+            </div>
+            <div class="row mb-3">
               <div class="col-md-6">
                 <label for="ChambreType" class="form-label">Type de Chambre</label>
                 <select class="form-select" id="ChambreType" th:field="*{ChambreType}">
@@ -152,26 +189,6 @@
                 </select>
               </div>
             </div>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="numeroCarte" class="form-label">Numéro de Carte</label>
-                <input class="form-control" type="text" id="numeroCarte" th:field="*{numeroCarte}">
-              </div>
-              <div class="col-md-6">
-                <label for="titulaireCarte" class="form-label">Titulaire de la Carte</label>
-                <input class="form-control" type="text" id="titulaireCarte" th:field="*{titulaireCarte}">
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="dateExpiration" class="form-label">Date d'Expiration</label>
-                <input class="form-control" type="text" id="dateExpiration" th:field="*{dateExpiration}">
-              </div>
-              <div class="col-md-6">
-                <label for="codeSecurite" class="form-label">Code de Sécurité</label>
-                <input class="form-control" type="text" id="codeSecurite" th:field="*{codeSecurite}">
-              </div>
-            </div>
           </div>
           <br>
           <button type="submit" class="btn btn-transparent">Enregistrer</button>
@@ -181,5 +198,4 @@
   </div>
 </div>
 </body>
-
 </html>
