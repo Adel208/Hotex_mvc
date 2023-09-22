@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface ChambreRepository extends JpaRepository<Chambre, Long> {
     //Page<Chambre> findByNomIgnoreCaseContains(String kw, Pageable pageable);
-
     //List<Chambre> findByEtage(int etage);
+
+    List<Chambre> findByStatut(Chambre.Statut statut);
 
 }

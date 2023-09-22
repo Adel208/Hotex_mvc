@@ -31,7 +31,7 @@
       background: #25252b; /* Couleur de fond des champs de formulaire */
       border-radius: 7px;
       overflow: hidden;
-      width: 400px; /* Largeur du formulaire */
+      /*width: 400px; !* Largeur du formulaire *!*/
       margin: 0 auto;
       padding: 20px;
     }
@@ -79,13 +79,11 @@
 <div layout:fragment="content1">
   <br>
   <div class="container mt-4">
-
-    <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
-    <br>
-    <h3 class="card-header" th:class="btn">ARRIVEE CLIENT</h3>
+    <h3 class="card-header">ENREGISTRER UNE RÉSERVATION</h3>
+    <div class="form-separator"></div>
     <div class="container d-flex justify-content-center align-items-center vh-100">
       <div class="col-md-12">
-        <form th:object="${utilisateur}" method="post" th:action="@{/save}" class="row">
+        <form th:object="${utilisateur}" method="post" th:action="@{/enregistrerReservation}">
           <div class="col-md-6">
             <div class="row mb-3">
               <div class="col-md-6">
@@ -126,10 +124,6 @@
             </div>
             <div class="row mb-3">
               <div class="col-md-6">
-                <label for="numeroDeChambre" class="form-label">Numéro de Chambre</label>
-                <input class="form-control" type="text" id="numeroDeChambre" th:field="*{numeroDeChambre}">
-              </div>
-              <div class="col-md-6">
                 <label for="nbrePersonne" class="form-label">Nombre de Personnes</label>
                 <select class="form-select" id="nbrePersonne" th:field="*{nbrePersonne}">
                   <option value="0">Aucun</option>
@@ -138,19 +132,6 @@
                   <option value="3">3</option>
                   <option value="4">4</option>
                   <option value="5">5</option>
-                </select>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="ChambreType" class="form-label">Type de Chambre</label>
-                <select class="form-select" id="ChambreType" th:field="*{ChambreType}">
-                  <option value="0">Aucun</option>
-                  <option value="1">1 Single</option>
-                  <option value="2">2 Double</option>
-                  <option value="3">3 Triple</option>
-                  <option value="4">4 Quadriple</option>
-                  <option value="5">5 Suite Royale</option>
                 </select>
               </div>
             </div>
@@ -171,27 +152,19 @@
                 <label for="adresseMail" class="form-label">Adresse Mail</label>
                 <input class="form-control" type="text" id="adresseMail" th:field="*{adresseMail}">
               </div>
-              <div class="col-md-6">
-                <label for="dateInscription" class="form-label">Date d'Inscription</label>
-                <input class="form-control" type="date" id="dateInscription" th:field="*{dateInscription}">
-              </div>
             </div>
             <div class="row mb-3">
-              <div class="col-md-12">
-                <label for="statut" class="form-label">Statut</label>
-                <select class="form-select" id="statut" th:field="*{statut}">
-                  <option value="0">Aucun</option>
-                  <option value="1">Habitué</option>
-                  <option value="2">Arrivée avant 19h</option>
-                  <option value="3">Réservation confirmée</option>
-                  <option value="4">Réservation annulée</option>
-                  <option value="5">Départ</option>
+              <div class="col-md-6">
+                <label for="chambre" class="form-label">Chambre</label>
+                <select class="form-select" id="chambre" th:field="*{chambre.id}">
+                  <option value="">Sélectionnez une chambre</option>
+                  <option th:each="chambre : ${chambresLibres}" th:value="${chambre.id}" th:text="${chambre.numero}"></option>
                 </select>
               </div>
             </div>
           </div>
           <br>
-          <button type="submit" class="btn btn-transparent">Enregistrer</button>
+          <button type="submit" class="btn btn-transparent">Enregistrer une réservation</button>
         </form>
       </div>
     </div>

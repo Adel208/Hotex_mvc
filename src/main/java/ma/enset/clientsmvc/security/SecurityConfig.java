@@ -1,3 +1,4 @@
+/*
 package ma.enset.clientsmvc.security;
 
 import org.springframework.context.annotation.Bean;
@@ -38,3 +39,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 }
+*/
