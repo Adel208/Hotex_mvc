@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -19,6 +21,17 @@ public class Chambre {
     private double prix;
     @Enumerated(EnumType.STRING)
     private Statut statut;
+
+    @ManyToMany(mappedBy = "chambres")
+    private List<Reservation> reservations = new ArrayList<>();
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
     public enum Statut {
         LIBRE, OCCUPEE

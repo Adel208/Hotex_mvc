@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Formulaire de reservation</h1>
+<form action="" method="post" th:object="${reservation}">
+    <label for="">Date Arrivé</label><input name="dateArrive" th:field="*{dateArrive}" type="datetime-local">
+    <label for="">Date Depart</label><input name="dateDepart" th:field="${reservation.dateDepart}" type="datetime-local">
+    <label for="">Nombre personnes</label><input name="nbrePersonne" th:field="*{nbrePersonne}" type="number">
+    <label for="">Statut</label><input name="statut" th:field="*{statut}" type="text">
+    <label for="">Commentaire</label><input name="commentaire" th:field="*{commentaire}" type="text">
+    <label for="">Les chambres</label>
+    <select multiple name="chambres" th:field="*{chambres}" id="">
+        <option th:text="${uneChambre.numero}" th:each="uneChambre : ${chambres}" th:value="${uneChambre.id}"></option>
+    </select>
+    <label for="">Le client</label>
+    <select name="client" th:field="*{client}" id="">
+        <option th:each="unClient : ${clients}" th:text="${unClient.nom.toUpperCase()+' '+unClient.prenom}" th:value="${unClient.id}"></option>
+    </select>
+    <button>Envoyer</button>
+</form>
+</body>
+</html>

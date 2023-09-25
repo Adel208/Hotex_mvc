@@ -1,5 +1,6 @@
 package ma.enset.clientsmvc.web;
 
+import jdk.jshell.execution.Util;
 import ma.enset.clientsmvc.entities.Utilisateur;
 import ma.enset.clientsmvc.entities.Chambre;
 import ma.enset.clientsmvc.repositories.ClientRepository;
@@ -51,9 +52,10 @@ public class ClientsController {
     }
 
     @GetMapping("/clients")
-    @ResponseBody
-    public List<Utilisateur> listClient() {
-        return clientRepository.findAll();
+    public String listClient(Model model) {
+        List<Utilisateur> clients = clientRepository.findAll();
+        model.addAttribute("clients",clients);
+        return "/admin/utilisateur/index" ;
     }
 
     @GetMapping("/formClients")
@@ -79,29 +81,7 @@ public class ClientsController {
         return "editClient";
     }
 
-    @PostMapping("/enregistrerReservation")
-    public String enregistrerReservation(@ModelAttribute("utilisateur") @Valid Utilisateur utilisateur, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            List<Chambre> chambresLibres = chambreRepository.findByStatut(Chambre.Statut.LIBRE);
-            model.addAttribute("chambresLibres", chambresLibres);
-            return "formClients";
-        }
 
-        Chambre chambre = chambreRepository.findById(utilisateur.getChambre().getId()).orElse(null);
-        if (chambre == null) {
-            throw new RuntimeException("Chambre introuvable");
-        }
-
-        utilisateur.setChambre(chambre);
-        clientRepository.save(utilisateur);
-        chambre.setStatut(Chambre.Statut.OCCUPEE);
-        chambreRepository.save(chambre);
-        // Charger à nouveau la liste des clients après avoir enregistré la réservation
-        Page<Utilisateur> pageClients = clientRepository.findByNomIgnoreCaseContains("", PageRequest.of(0, 5));
-        model.addAttribute("listClients", pageClients.getContent());
-
-        return "redirect:/index";
-    }
 
     @PostMapping("/save")
     public String save(@ModelAttribute("utilisateur") @Valid Utilisateur utilisateur, BindingResult bindingResult) {
