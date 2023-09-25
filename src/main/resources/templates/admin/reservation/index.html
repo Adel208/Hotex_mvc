@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Liste des reservations</title>
+</head>
+<body>
+    <h1>Les reservations</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Client</th>
+            <th>Date arrivé</th>
+            <th>Date départ</th>
+            <th>Chambres</th>
+            <th>Nombre de personnes</th>
+            <th>Statut</th>
+        </tr>
+        <tbody>
+        <tr th:each="uneReservation : ${reservations}">
+            <td th:text="${uneReservation.client.nom+' '+uneReservation.client.prenom}"></td>
+            <td th:text="${uneReservation.dateArrive}"></td>
+            <td th:text="${uneReservation.dateDepart}"> </td>
+            <td>
+                <div th:each="uneChambre : ${uneReservation.chambres}" th:text="${uneChambre.numero}"></div>
+            </td>
+            <td th:text="${uneReservation.nbrePersonne}"></td>
+            <td th:text="${uneReservation.statut}"></td>
+        </tr>
+        </tbody>
+        </thead></table>
+</body>
+</html>
