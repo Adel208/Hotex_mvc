@@ -1,16 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="template1">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Inscription et réservation</title>
+    <style>
+
+    </style>
 </head>
 <body>
-    <h1>Inscription et reservation</h1>
-    <form th:object="${dto}" th:action="@{/admin/clientetreservation}" method="post">
-<!--        TODO faire reste le formulaire-->
-        <input type="text" th:field="${dto.utilisateur.nom}">
-        <input type="date" th:field="${dto.reservation.dateDepart}">
-        <button>Envoyer</button>
-    </form>
+<div layout:fragment="content1">
+<h1>Inscription et réservation</h1>
+<form th:object="${dto}" th:action="@{/admin/clientetreservation}" method="post">
+    <label for="dateArrive">Date d'arrivée:</label>
+    <input type="date" id="dateArrive" th:field="${dto.reservation.dateArrive}">
+
+    <label for="dateDepart">Date de départ:</label>
+    <input type="date" id="dateDepart" th:field="${dto.reservation.dateDepart}">
+
+    <label for="statut">Statut:</label>
+    <input type="text" id="statut" th:field="${dto.reservation.statut}">
+
+    <label for="commentaire">Commentaire:</label>
+    <input type="text" id="commentaire" th:field="${dto.reservation.commentaire}">
+
+    <label for="nbrePersonne">Nombre de personnes:</label>
+    <input type="text" id="nbrePersonne" th:field="${dto.reservation.nbrePersonne}">
+
+    <!-- Champ utilisateur -->
+    <label for="utilisateurNom">Nom de l'utilisateur:</label>
+    <input type="text" id="utilisateurNom" th:field="${dto.utilisateur.nom}">
+
+    <button type="submit">Envoyer</button>
+</form>
+</div>
 </body>
 </html>

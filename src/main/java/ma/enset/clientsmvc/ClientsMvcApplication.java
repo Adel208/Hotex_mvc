@@ -43,7 +43,7 @@ class DatabaseLoader {
 			Utilisateur client1= new Utilisateur(null, "Mme.", "Dupont", "Alice" , "12 Rue Seine, Lille, France 69000", "+33 6 81 45 56 45", "alice.dupont@email.com",new ArrayList<>());
 			clientRepository.save(client1);
 			clientRepository.save(new Utilisateur(null, "Mr.", "Albert", "Camus", "34 Rue de Lyon, Brest, France  34000", "+33 6 34 45 45 56 ", "lb.dupont@email.com",new ArrayList<>()));
-			clientRepository.save(new Utilisateur(null, "Mr.", "Daniel", "Benammou", "34 Rue de Lyon, Strasbourg, France  67000", "+33 6 81 45 56 21", "alice.dupont@email.com",new ArrayList<>()));
+			clientRepository.save(new Utilisateur(null, "Mr.", "Daniel", "Benammou", "34 Rue de Lyon, Strasbourg, France  67000", "+33 6 81 45 56 21", "Gilbert.dupont@email.com",new ArrayList<>()));
 
 			Chambre chambre101= new Chambre(null, "100", 1, 2, 80.00, Chambre.Statut.LIBRE,new ArrayList<>());
 			chambreRepository.save(chambre101);
