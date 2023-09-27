@@ -28,6 +28,7 @@ public class Utilisateur {
 
     private String adresse;
     private String numeroTelephone;
+    @Column(unique = true)
     private String adresseMail;
 
     @OneToMany(mappedBy = "client", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})

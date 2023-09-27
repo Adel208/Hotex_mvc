@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Inscription et reservation</h1>
+    <form th:object="${dto}" th:action="@{/admin/clientetreservation}" method="post">
+<!--        TODO faire reste le formulaire-->
+        <input type="text" th:field="${dto.utilisateur.nom}">
+        <input type="date" th:field="${dto.reservation.dateDepart}">
+        <button>Envoyer</button>
+    </form>
+</body>
+</html>

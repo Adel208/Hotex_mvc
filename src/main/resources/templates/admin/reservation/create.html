@@ -8,9 +8,9 @@
 </head>
 <body>
 <h1>Formulaire de reservation</h1>
-<form action="" method="post" th:object="${reservation}">
-    <label for="">Date Arrivé</label><input name="dateArrive" th:field="*{dateArrive}" type="datetime-local">
-    <label for="">Date Depart</label><input name="dateDepart" th:field="*{dateDepart}" type="datetime-local">
+<form th:action="@{/admin/reservation}" method="post" th:object="${reservation}">
+    <label for="">Date Arrivé</label><input name="dateArrive" th:field="*{dateArrive}" type="date">
+    <label for="">Date Depart</label><input name="dateDepart" th:field="*{dateDepart}" type="date">
     <label for="">Nombre personnes</label><input name="nbrePersonne" th:field="*{nbrePersonne}" type="number">
     <label for="">Statut</label><input name="statut" th:field="*{statut}" type="text">
     <label for="">Commentaire</label><input name="commentaire" th:field="*{commentaire}" type="text">
