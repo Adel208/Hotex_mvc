@@ -1,4 +1,6 @@
 package ma.enset.clientsmvc.entities;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -6,6 +8,10 @@ public class Paiement {
     private int id;
     private LocalDate datePaiement;
     private CarteBancaire carteBancaire;
+
+    @ManyToOne
+    @JoinColumn(name = "reservation_id") // Clé étrangère
+    private Reservation reservation;
 
     // Constructeur
     public Paiement(int id, LocalDate datePaiement, CarteBancaire carteBancaire) {

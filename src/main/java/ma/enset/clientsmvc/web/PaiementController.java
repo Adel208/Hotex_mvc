@@ -26,7 +26,6 @@ public class PaiementController {
     @PostMapping("/creer")
     public String creerPaiement(@RequestBody Paiement paiement) {
         paiementService.creerPaiement(paiement);
-        // Gérer la redirection ou la réponse appropriée
         return "redirect:/paiements";
     }
 
@@ -34,7 +33,7 @@ public class PaiementController {
     public String listePaiements(Model model) {
         List<Paiement> paiements = paiementService.getTousLesPaiements();
         model.addAttribute("paiements", paiements);
-        return "liste_paiements"; // Afficher la liste des paiements dans une vue
+        return "liste_paiements";
     }
 
 
