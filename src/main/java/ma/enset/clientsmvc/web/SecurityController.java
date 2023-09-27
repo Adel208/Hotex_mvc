@@ -1,3 +1,4 @@
+/*
 package ma.enset.clientsmvc.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,3 +11,4 @@ public class SecurityController {
 
 
 }
+*/

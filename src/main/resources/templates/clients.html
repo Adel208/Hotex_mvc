@@ -85,7 +85,7 @@
     <div class="card-header" th:class="btn">LISTE DES CLIENTS</div>
     <div class="card-body">
       <form method="get" th:action="@{/index}" class="mb-3">
-        <label></label>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <input type="text" name="keyword" th:field="${keyword}">
         <button type="submit" class="btn btn-wheat">Chercher</button>
       </form>
@@ -97,7 +97,6 @@
           <th>Nom</th>
           <th>Prénom</th>
           <th>Nombre de Personnes</th>
-
           <th>Date d'Arrivée</th>
           <th>Date de Départ</th>
           <th>Petit Déjeuner</th>
@@ -113,8 +112,6 @@
           <td th:text="${utilisateur.nom}"></td>
           <td th:text="${utilisateur.prenom}"></td>
           <td th:text="${utilisateur.nbrePersonne}"></td>
-
-
           <td th:text="${utilisateur.dateDepart}"></td>
           <td th:text="${utilisateur.dateArrivee }"></td>
           <td th:text="${utilisateur.petitDejeuner}"></td>
