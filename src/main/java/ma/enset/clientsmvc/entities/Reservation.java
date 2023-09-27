@@ -3,6 +3,7 @@ package ma.enset.clientsmvc.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -20,7 +21,9 @@ public class Reservation {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateArrive;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDepart;
     private String statut;
     private String commentaire;

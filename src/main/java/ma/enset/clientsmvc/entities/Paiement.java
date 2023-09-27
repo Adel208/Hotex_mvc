@@ -1,13 +1,22 @@
 package ma.enset.clientsmvc.entities;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.junit.jupiter.api.condition.EnabledIf;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
 public class Paiement {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDate datePaiement;
-    private CarteBancaire carteBancaire;
+//    private CarteBancaire carteBancaire;
 
     @ManyToOne
     @JoinColumn(name = "reservation_id") // Clé étrangère
@@ -17,7 +26,7 @@ public class Paiement {
     public Paiement(int id, LocalDate datePaiement, CarteBancaire carteBancaire) {
         this.id = id;
         this.datePaiement = datePaiement;
-        this.carteBancaire = carteBancaire;
+//        this.carteBancaire = carteBancaire;
     }
 
     // Getters et setters
@@ -37,20 +46,13 @@ public class Paiement {
         this.datePaiement = datePaiement;
     }
 
-    public CarteBancaire getCarteBancaire() {
-        return carteBancaire;
-    }
 
-    public void setCarteBancaire(CarteBancaire carteBancaire) {
-        this.carteBancaire = carteBancaire;
-    }
 
     @Override
     public String toString() {
         return "Paiement{" +
                 "id=" + id +
                 ", datePaiement=" + datePaiement +
-                ", carteBancaire=" + carteBancaire +
                 '}';
     }
 }
