@@ -73,8 +73,10 @@ public class ReservationController {
     public String storeClientEtReservation(@ModelAttribute UtilisateurEtReservationDTO dto, BindingResult bindingResult) {
         // TODO: Effectue la validation des erreurs
         // TODO: Avant d'enregistrer le client, vérifie s'il n'existe pas déjà un client avec la même adresse e-mail
+
+        // TODO: Enregistre d'abord le client avec clientRepository
         // TODO: Définit le client de la réservation (dto.reservation.setClient(dto.utilisateur))
-        // TODO: Enregistre d'abord le client avec clientRepository, puis la réservation en utilisant reservationRepository
+        //TODO : Enregistre la reservation
 
         System.out.println(dto); // Affiche les informations du DTO dans la console
         return ""; // Redirection vers une page spécifique après le traitement du formulaire
@@ -90,6 +92,7 @@ public class ReservationController {
             model.addAttribute("clients", clients); // Ajoute la liste des clients au modèle avec la clé "clients"
             return "/admin/reservation/create"; // Redirige vers le formulaire de création en cas d'erreurs de validation
         }
+        reservationService.saveReservation(reservation);
 
         // TODO: Enregistre la réservation via le service ou le repository
         // Exemple de code pour enregistrer la réservation (à décommenter et personnaliser selon la logique métier)
