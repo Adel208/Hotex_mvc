@@ -80,12 +80,12 @@
     <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
     <br>
     <br>
-    <div class="card-header">Gestion des Chambres</div>
+    <div class="card-header"><h1>Gestion des Chambres</h1></div>
     <div class="card-body">
         <div class="form-container">
 
             <form method="post" th:action="@{/chambre/ajouterChambre}" th:object="${chambre}" class="mb-3">
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+<!--                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
                 <label for="numeroChambre" style="font-size: 10px;">N° Chambre:</label>
                 <input type="text" id="numeroChambre" name="numeroChambre" th:field="${chambre.numero}" required maxlength="3">
                 <label for="etage" style="font-size: 10px;">Étage:</label>

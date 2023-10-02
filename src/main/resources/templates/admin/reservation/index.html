@@ -1,15 +1,86 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="template1">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Liste des reservations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.2s ease; /* Transition générale */
+        }
+
+        /* Styles pour le corps du formulaire */
+        body {
+            font-family: 'Oswald', sans-serif; /* Police de caractères du deuxième formulaire */
+            background: #1b1b2b; /* Couleur de fond du deuxième formulaire */
+            padding: 75px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #c0c0c0;
+            font-weight: 100;
+        }
+
+        /* Styles pour le formulaire */
+        form {
+            background: #25252b; /* Couleur de fond des champs de formulaire */
+            border-radius: 7px;
+            overflow: hidden;
+            width: 400px; /* Largeur du formulaire */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        label {
+            color: #777;
+            font-weight: 400;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            font-weight: 300;
+        }
+
+        input[type="text"] {
+            background: #25252b; /* Couleur de fond des champs de formulaire */
+            border: none;
+            border-bottom: 1px solid #777; /* Couleur de la bordure inférieure des champs de formulaire */
+            color: #b3b3b3;
+            font-weight: 300;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            color: #b3b3b3; /* Couleur du texte des boutons */
+            background: rgba(0, 0, 0, 0.1); /* Couleur de fond des boutons */
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 12px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease; /* Transition des boutons */
+        }
+
+        .btn:hover {
+            background: #fff; /* Couleur de fond des boutons au survol */
+            color: #1b1b1b; /* Couleur du texte des boutons au survol */
+        }
+    </style>
 </head>
 <body>
+<div layout:fragment="content1">
     <h1>Les reservations</h1>
     <table class="table">
         <thead>
@@ -35,4 +106,5 @@
         </tbody>
         </thead></table>
 </body>
+</div>
 </html>

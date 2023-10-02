@@ -82,7 +82,6 @@ public class ClientsController {
     }
 
 
-
     @PostMapping("/save")
     public String save(@ModelAttribute("utilisateur") @Valid Utilisateur utilisateur, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

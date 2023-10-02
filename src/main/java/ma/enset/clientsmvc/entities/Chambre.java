@@ -30,6 +30,7 @@ public class Chambre {
     }
 
     public void setReservations(List<Reservation> reservations) {
+
         this.reservations = reservations;
     }
 

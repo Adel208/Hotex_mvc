@@ -20,6 +20,7 @@ public class PaiementController {
 
     @Autowired
     public PaiementController(PaiementService paiementService) {
+
         this.paiementService = paiementService;
     }
 
