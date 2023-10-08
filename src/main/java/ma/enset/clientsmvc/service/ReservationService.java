@@ -3,9 +3,22 @@ package ma.enset.clientsmvc.service;
 import ma.enset.clientsmvc.dto.UtilisateurEtReservationDTO;
 import ma.enset.clientsmvc.entities.Chambre;
 import ma.enset.clientsmvc.entities.Reservation;
+import ma.enset.clientsmvc.entities.Utilisateur;
 import ma.enset.clientsmvc.repositories.ChambreRepository;
+import ma.enset.clientsmvc.repositories.UtilisateurRepository;
 import ma.enset.clientsmvc.repositories.ReservationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
+import ma.enset.clientsmvc.dto.UtilisateurEtReservationDTO;
+import ma.enset.clientsmvc.entities.Chambre;
+import ma.enset.clientsmvc.entities.Reservation;
+import ma.enset.clientsmvc.entities.Utilisateur;
+import ma.enset.clientsmvc.repositories.ChambreRepository;
+import ma.enset.clientsmvc.repositories.UtilisateurRepository;
+import ma.enset.clientsmvc.repositories.ReservationRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,18 +27,23 @@ import java.util.List;
 public class ReservationService {
     private ReservationRepository reservationRepository;
     private ChambreRepository chambreRepository;
+    private UtilisateurRepository utilisateurRepository; // Ajout de UtilisateurRepository
 
-    public ReservationService(ReservationRepository reservationRepository, ChambreRepository chambreRepository) {
+    public ReservationService(ReservationRepository reservationRepository,
+                              ChambreRepository chambreRepository,
+                              UtilisateurRepository utilisateurRepository) { // Injection de UtilisateurRepository via le constructeur
         this.reservationRepository = reservationRepository;
         this.chambreRepository = chambreRepository;
+        this.utilisateurRepository = utilisateurRepository; // Initialisation de UtilisateurRepository
     }
 
-    public void saveUserAndReservation(UtilisateurEtReservationDTO dto){
-        //Sauvegarder le utilisateur
-
-        // dto.getReservation().setUtilisateur()
-        this.saveReservation(dto.getReservation());
+    public void saveUserAndReservation(UtilisateurEtReservationDTO dto) {
+        Utilisateur utilisateur = utilisateurRepository.save(dto.getUtilisateur());
+        Reservation reservation = dto.getReservation();
+        reservation.setClient(utilisateur);
+        this.saveReservation(reservation);
     }
+
 
     public Reservation saveReservation(Reservation reservation){
 

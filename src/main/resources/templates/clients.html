@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -76,7 +77,7 @@
     }
   </style>
 </head>
-<!--
+&lt;!&ndash;
 <body>
 <div layout:fragment="content1">
   <div class="container">
@@ -86,7 +87,7 @@
     <div class="card-header" th:class="btn">LISTE DES CLIENTS</div>
     <div class="card-body">
       <form method="get" th:action="@{/index}" class="mb-3">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <input type="text" name="keyword" th:field="${keyword}">
         <button type="submit" class="btn btn-wheat">Chercher</button>
       </form>
@@ -145,4 +146,5 @@
 <td th:text="${#temporals.format(utilisateur.dateDepart, 'dd-MM-yyyy')}"></td>&ndash;&gt;
 </body>
 </html>
+
 -->

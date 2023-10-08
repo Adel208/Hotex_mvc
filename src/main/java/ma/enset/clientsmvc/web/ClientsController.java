@@ -1,9 +1,8 @@
 package ma.enset.clientsmvc.web;
 
-import jdk.jshell.execution.Util;
 import ma.enset.clientsmvc.entities.Utilisateur;
 import ma.enset.clientsmvc.entities.Chambre;
-import ma.enset.clientsmvc.repositories.ClientRepository;
+import ma.enset.clientsmvc.repositories.UtilisateurRepository;
 import ma.enset.clientsmvc.repositories.ChambreRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,11 +16,11 @@ import java.util.List;
 
 @Controller
 public class ClientsController {
-    private final ClientRepository clientRepository;
+    private final UtilisateurRepository utilisateurRepository;
     private final ChambreRepository chambreRepository;
 
-    public ClientsController(ClientRepository clientRepository, ChambreRepository chambreRepository) {
-        this.clientRepository = clientRepository;
+    public ClientsController(UtilisateurRepository utilisateurRepository, ChambreRepository chambreRepository) {
+        this.utilisateurRepository = utilisateurRepository;
         this.chambreRepository = chambreRepository;
     }
 
@@ -30,7 +29,7 @@ public class ClientsController {
                           @RequestParam(name = "page", defaultValue = "0") int page,
                           @RequestParam(name = "size", defaultValue = "5") int size,
                           @RequestParam(name = "keyword", defaultValue = "") String keyword) {
-        Page<Utilisateur> pageClients = clientRepository.findByNomIgnoreCaseContains(keyword, PageRequest.of(page, size));
+        Page<Utilisateur> pageClients = utilisateurRepository.findByNomIgnoreCaseContains(keyword, PageRequest.of(page, size));
         model.addAttribute("listClients", pageClients.getContent());
         model.addAttribute("pages", new int[pageClients.getTotalPages()]);
         model.addAttribute("currentPage", page);
@@ -42,7 +41,7 @@ public class ClientsController {
     public String delete(@RequestParam Long id,
                          @RequestParam String keyword,
                          @RequestParam int page) {
-        clientRepository.deleteById(id);
+        utilisateurRepository.deleteById(id);
         return "redirect:/index?page=" + page + "&keyword=" + keyword;
     }
 
@@ -53,7 +52,7 @@ public class ClientsController {
 
     @GetMapping("/clients")
     public String listClient(Model model) {
-        List<Utilisateur> clients = clientRepository.findAll();
+        List<Utilisateur> clients = utilisateurRepository.findAll();
         model.addAttribute("clients",clients);
         return "/admin/utilisateur/index" ;
     }
@@ -71,7 +70,7 @@ public class ClientsController {
                              @RequestParam Long id,
                              @RequestParam String keyword,
                              @RequestParam int page) {
-        Utilisateur utilisateur = clientRepository.findById(id).orElse(null);
+        Utilisateur utilisateur = utilisateurRepository.findById(id).orElse(null);
         if (utilisateur == null) {
             throw new RuntimeException("Utilisateur introuvable");
         }
@@ -87,7 +86,7 @@ public class ClientsController {
         if (bindingResult.hasErrors()) {
             return "editClient";
         }
-        clientRepository.save(utilisateur);
+        utilisateurRepository.save(utilisateur);
         return "redirect:/index";
     }
 }

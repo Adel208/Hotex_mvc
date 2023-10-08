@@ -80,10 +80,11 @@
 <div layout:fragment="content1">
 <h1>Formulaire de reservation</h1>
 <form th:action="@{/admin/reservation}" method="post" th:object="${reservation}">
-    <label for="">Date Arrivé</label><input name="dateArrive" th:field="*{dateArrive}" type="date">
+    <label for="">Date Arrivée</label><input name="dateArrive" th:field="*{dateArrivee}" type="date">
     <label for="">Date Depart</label><input name="dateDepart" th:field="*{dateDepart}" type="date">
     <label for="">Nombre personnes</label><input name="nbrePersonne" th:field="*{nbrePersonne}" type="number">
     <label for="">Statut</label><input name="statut" th:field="*{statut}" type="text">
+    <labe for="">Petit Déjeuner</labe><input bame="pdj" th:field="*{pdj}" type="text">
     <label for="">Commentaire</label><input name="commentaire" th:field="*{commentaire}" type="text">
     <label for="">Les chambres</label>
     <select multiple name="chambres" th:field="*{chambres}" id="">

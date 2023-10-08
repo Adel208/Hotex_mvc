@@ -81,7 +81,7 @@
 <h1>Inscription et réservation</h1>
 <form th:object="${dto}" th:action="@{/admin/clientetreservation}" method="post">
     <label for="dateArrive">Date d'arrivée:</label>
-    <input type="date" id="dateArrive" th:field="${dto.reservation.dateArrive}">
+    <input type="date" id="dateArrive" th:field="${dto.reservation.dateArrivee}">
 
     <label for="dateDepart">Date de départ:</label>
     <input type="date" id="dateDepart" th:field="${dto.reservation.dateDepart}">
