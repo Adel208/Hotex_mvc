@@ -39,6 +39,8 @@ class DatabaseLoader {
 	@Bean
 	CommandLineRunner commandLineRunner() {
 		return args -> {
+			Utilisateur client1= new Utilisateur(null, "Mme.", "Dupont", "Alice" , "12 Rue Seine, Lille, France 69000", "+33 6 81 45 56 45", "alice.dupont@email.com",new ArrayList<>());
+			utilisateurRepository.save(client1);
 			Chambre chambre101= new Chambre(null, "100", 1, 2, 80.00, Chambre.Statut.LIBRE,new ArrayList<>());
 			chambreRepository.save(chambre101);
 			chambreRepository.save(new Chambre(null, "102", 1, 3, 95.00, Chambre.Statut.LIBRE,new ArrayList<>()));
