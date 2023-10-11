@@ -85,7 +85,7 @@
         <div class="form-container">
 
             <form method="post" th:action="@{/chambre/ajouterChambre}" th:object="${chambre}" class="mb-3">
-<!--                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+<!--&lt;!&ndash;                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />&ndash;&gt;-->
                 <label for="numeroChambre" style="font-size: 10px;">N° Chambre:</label>
                 <input type="text" id="numeroChambre" name="numeroChambre" th:field="${chambre.numero}" required maxlength="3">
                 <label for="etage" style="font-size: 10px;">Étage:</label>
@@ -113,7 +113,7 @@
             </tr>
             </thead>
             <tbody>
-            <!--  itération liste chambres -->
+            &lt;!&ndash;  itération liste chambres &ndash;&gt;
             <tr th:each="uneChambre : ${lesChambres}">
                 <td th:text="${uneChambre.numero}"></td>
                 <td th:text="${uneChambre.etage}"></td>
@@ -128,3 +128,4 @@
 </div>
 </body>
 </html>
+

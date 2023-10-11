@@ -20,6 +20,10 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String titre;
+    private String nom;
+    private String prenom;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateArrivee;
 
@@ -35,7 +39,7 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
-    private Utilisateur utilisateur; // Changer le nom de la variable de 'client' à 'utilisateur'
+    private Utilisateur utilisateur;
 
     @ManyToMany
     @JoinTable(name = "reservation_chambres",
@@ -50,6 +54,33 @@ public class Reservation {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    // Getter et Setter pour titre
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    // Getter et Setter pour nom
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    // Getter et Setter pour prenom
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     // Getter et Setter pour dateArrivee

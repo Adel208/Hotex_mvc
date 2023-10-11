@@ -39,11 +39,6 @@ class DatabaseLoader {
 	@Bean
 	CommandLineRunner commandLineRunner() {
 		return args -> {
-			Utilisateur client1= new Utilisateur(null, "Mme.", "Dupont", "Alice" , "12 Rue Seine, Lille, France 69000", "+33 6 81 45 56 45", "alice.dupont@email.com",new ArrayList<>());
-			utilisateurRepository.save(client1);
-			utilisateurRepository.save(new Utilisateur(null, "Mr.", "Albert", "Camus", "34 Rue de Lyon, Brest, France  34000", "+33 6 34 45 45 56 ", "lb.dupont@email.com",new ArrayList<>()));
-			utilisateurRepository.save(new Utilisateur(null, "Mr.", "Daniel", "Benammou", "34 Rue de Lyon, Strasbourg, France  67000", "+33 6 81 45 56 21", "Gilbert.dupont@email.com",new ArrayList<>()));
-
 			Chambre chambre101= new Chambre(null, "100", 1, 2, 80.00, Chambre.Statut.LIBRE,new ArrayList<>());
 			chambreRepository.save(chambre101);
 			chambreRepository.save(new Chambre(null, "102", 1, 3, 95.00, Chambre.Statut.LIBRE,new ArrayList<>()));
@@ -67,20 +62,16 @@ class DatabaseLoader {
 			LocalDate dateArrivee = LocalDate.now();
 			LocalDate dateDepart = LocalDate.of(2023, 12, 31);
 
+/*
 			Reservation reservation = new Reservation(
-					null, // id (sera généré automatiquement lors de l'insertion en base de données)
-					dateArrivee, // dateArrivee
-					dateDepart, // dateDepart
-					"en cours", // statut
-					"2", // pdj
-					"Avant 19H", // commentaire
-					"2", // nbrePersonne
-					client1, // client (assurez-vous d'avoir un objet Utilisateur client1)
-					List.of(chambre101) // chambres (assurez-vous d'avoir une liste de chambres chambre101)
+					null,dateArrivee,dateDepart, "en cours", "2", "Avant 19H", "2", client1,List.of(chambre101)
 			);
 
 			reservationRepository.save(reservation);
+*/
 		};
+
+
 	}
 
 	}

@@ -9,10 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UtilisateurRepository extends JpaRepository<Utilisateur,Long> {
     Page<Utilisateur> findByNomIgnoreCaseContains(String kw, Pageable pageable);
-    //methode qui permet de retorner une page qui contient un String keyword et omme la methode retourne une
-    //page pas une liste il faut rajouter un parametre de type Pageable
-    Utilisateur findByEmail(String email);
-
+    Utilisateur findByeMail(String email);
 }
 
 

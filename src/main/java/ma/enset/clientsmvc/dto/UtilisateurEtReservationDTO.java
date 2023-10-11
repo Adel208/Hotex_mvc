@@ -3,16 +3,19 @@ package ma.enset.clientsmvc.dto;
 import ma.enset.clientsmvc.entities.Reservation;
 import ma.enset.clientsmvc.entities.Utilisateur;
 
+import javax.validation.constraints.Email;
+
 public class UtilisateurEtReservationDTO {
     private Utilisateur utilisateur;
     private Reservation reservation;
+
 
     public UtilisateurEtReservationDTO(Utilisateur utilisateur, Reservation reservation) {
         this.utilisateur = utilisateur;
         this.reservation = reservation;
     }
 
-    // Getter et Setter pour utilisateur
+
     public Utilisateur getUtilisateur() {
         return utilisateur;
     }
@@ -21,7 +24,6 @@ public class UtilisateurEtReservationDTO {
         this.utilisateur = utilisateur;
     }
 
-    // Getter et Setter pour reservation
     public Reservation getReservation() {
         return reservation;
     }

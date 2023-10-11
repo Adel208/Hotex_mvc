@@ -40,7 +40,7 @@ public class ReservationService {
     public void saveUserAndReservation(UtilisateurEtReservationDTO dto) {
         Utilisateur utilisateur = utilisateurRepository.save(dto.getUtilisateur());
         Reservation reservation = dto.getReservation();
-        reservation.setClient(utilisateur);
+        reservation.setUtilisateur(utilisateur);
         this.saveReservation(reservation);
     }
 

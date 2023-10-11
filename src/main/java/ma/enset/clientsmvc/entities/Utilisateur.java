@@ -31,22 +31,22 @@ public class Utilisateur {
     private String numeroTelephone;
 
     @Column(unique = true)
-    private String adresseMail;
+    private String eMail;
 
     @ManyToOne
     @JoinColumn(name = "chambre_id")
     private Chambre chambre;
 
-    @OneToMany(mappedBy = "client", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "utilisateur", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Reservation> reservations = new ArrayList<>();
 
     // Getter et setter pour l'adresseMail
     public String getAdresseMail() {
-        return adresseMail;
+        return eMail;
     }
 
     public void setAdresseMail(String adresseMail) {
-        this.adresseMail = adresseMail;
+        this.eMail = adresseMail;
     }
 
     // Getter et setter pour la chambre
@@ -66,4 +66,6 @@ public class Utilisateur {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+
+
 }

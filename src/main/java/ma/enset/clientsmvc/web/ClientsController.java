@@ -23,7 +23,6 @@ public class ClientsController {
         this.utilisateurRepository = utilisateurRepository;
         this.chambreRepository = chambreRepository;
     }
-
     @GetMapping("/index")
     public String clients(Model model,
                           @RequestParam(name = "page", defaultValue = "0") int page,
@@ -36,6 +35,7 @@ public class ClientsController {
         model.addAttribute("keyword", keyword);
         return "clients";
     }
+
 
     @GetMapping("/delete")
     public String delete(@RequestParam Long id,

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -78,24 +79,27 @@
 </head>
 <body>
 <div layout:fragment="content1">
-<h1>Formulaire de reservation</h1>
-<form th:action="@{/admin/reservation}" method="post" th:object="${reservation}">
-    <label for="">Date Arrivée</label><input name="dateArrive" th:field="*{dateArrivee}" type="date">
-    <label for="">Date Depart</label><input name="dateDepart" th:field="*{dateDepart}" type="date">
-    <label for="">Nombre personnes</label><input name="nbrePersonne" th:field="*{nbrePersonne}" type="number">
-    <label for="">Statut</label><input name="statut" th:field="*{statut}" type="text">
-    <labe for="">Petit Déjeuner</labe><input bame="pdj" th:field="*{pdj}" type="text">
-    <label for="">Commentaire</label><input name="commentaire" th:field="*{commentaire}" type="text">
-    <label for="">Les chambres</label>
-    <select multiple name="chambres" th:field="*{chambres}" id="">
-        <option th:text="${uneChambre.numero}" th:each="uneChambre : ${chambres}" th:value="${uneChambre.id}"></option>
-    </select>
-    <label for="">Le client</label>
-    <select name="client" th:field="*{client}" id="">
-        <option th:each="unClient : ${clients}" th:text="${unClient.nom.toUpperCase()+' '+unClient.prenom}" th:value="${unClient.id}"></option>
-    </select>
-    <button>Envoyer</button>
-</form>
-    </div>
+    <h1>Formulaire de reservation</h1>
+    <form th:action="@{/admin/reservation}" method="post" th:object="${reservation}">
+        <label for="dateArrivee">Date Arrivée</label><input name="dateArrive" id="dateArrivee" th:field="*{dateArrivee}" type="date">
+        <label for="dateDepart">Date Depart</label><input name="dateDepart" id="dateDepart" th:field="*{dateDepart}" type="date">
+        <label for="nbrePersonne">Nombre personnes</label><input name="nbrePersonne" id="nbrePersonne" th:field="*{nbrePersonne}" type="number">
+        <label for="statut">Statut</label><input name="statut" id="statut" th:field="*{statut}" type="text">
+        <label for="pdj">Petit Déjeuner</label><input name="pdj" id="pdj" th:field="*{pdj}" type="text">
+        <label for="commentaire">Commentaire</label><input name="commentaire" id="commentaire" th:field="*{commentaire}" type="text">
+
+        <label for="chambres">Les chambres</label>
+        <select multiple name="chambres" id="chambres" th:field="*{chambres}">
+            <option th:each="uneChambre : ${chambres}" th:text="${uneChambre.numero}" th:value="${uneChambre.id}"></option>
+        </select>
+
+        <label for="client">Le client</label>
+        <select name="client" id="client" th:field="*{client}">
+            <option th:each="unClient : ${clients}" th:text="${unClient.nom.toUpperCase()+' '+unClient.prenom}" th:value="${unClient.id}"></option>
+        </select>
+        <button>Envoyer</button>
+    </form>
+</div>
+
 </body>
 </html>
