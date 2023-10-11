@@ -68,12 +68,12 @@ public class ReservationController {
     @PostMapping("/admin/create")
     public String createReservation(@ModelAttribute("reservation") @Valid Reservation reservation, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "admin/reservation/create";  // Correction : chemin relatif sans '/'
+            return "admin/reservation/create";
         }
 
-        // Le reste de votre logique pour enregistrer la réservation
 
-        return "redirect:/admin/reservation";  // Rediriger vers la page d'index des réservations
+
+        return "redirect:/admin/reservation";
     }
 
 
@@ -99,7 +99,7 @@ public class ReservationController {
     @PostMapping("/admin/reservation")
     public String store(@ModelAttribute("reservation") @Valid Reservation reservation, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "admin/reservation/create"; // Correction : chemin relatif sans '/'
+            return "admin/reservation/create";
         }
 
         Chambre chambre = chambreRepository.findById(reservation.getUtilisateur().getChambre().getId()).orElse(null);
