@@ -66,7 +66,7 @@ public class ReservationController {
         return "/admin/reservation/addClientEtReservation";
     }
 
-//    @PostMapping("/admin/create")
+//    @PostMapping("/admin/create/")
 //    public String createReservation(@ModelAttribute("reservation") @Valid Reservation reservation, BindingResult bindingResult) {
 //        if (bindingResult.hasErrors()) {
 //            return "admin/reservation/create";
