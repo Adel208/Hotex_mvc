@@ -27,14 +27,14 @@
         </thead>
         <tbody>
         <tr th:each="uneReservation : ${reservations}">
-            <td th:text="${uneReservation.client.nom+' '+uneReservation.client.prenom}"></td>
+            <td th:text="${uneReservation.utilisateur?.nom+' '+uneReservation.utilisateur?.prenom}"></td>
             <td th:text="${uneReservation.dateArrivee}"></td>
             <td th:text="${uneReservation.dateDepart}"></td>
             <td th:text="${uneReservation.statut}"></td>
             <td th:text="${uneReservation.pdj}"></td>
             <td th:text="${uneReservation.nbrePersonne}"></td>
             <td th:text="${uneReservation.commentaire}"></td>
-            <td th:text="${uneReservation.client.adresse}"></td>
+            <td th:text="${uneReservation.utilisateur.adresse}"></td>
             <td>
                 <div th:each="uneChambre : ${uneReservation.chambres}" th:text="${uneChambre.numero}"></div>
             </td>

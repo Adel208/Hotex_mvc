@@ -1,8 +1,10 @@
-package ma.enset.clientsmvc.entities;
+package ma.enset.clientsmvc.dto;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.enset.clientsmvc.entities.Reservation;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -12,29 +14,28 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Utilisateur {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+public class UtilisateurDTO {
+
     private Long id;
 
-
+    @NotBlank(message = "Le titre ne peut pas être vide")
     private String titre;
 
-
+    @NotBlank(message = "Le nom ne peut pas être vide")
     private String nom;
 
-
+    @NotBlank(message = "Le prénom ne peut pas être vide")
     private String prenom;
 
     private String adresse;
     private String numeroTelephone;
 
-    @Column(unique = true)
+
     private String eMail;
 
 
-    @OneToMany(mappedBy = "utilisateur", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+
     private List<Reservation> reservations = new ArrayList<>();
 
     // Getter et setter pour l'adresseMail
