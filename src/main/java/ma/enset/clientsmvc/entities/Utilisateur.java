@@ -33,9 +33,9 @@ public class Utilisateur {
     @Column(unique = true)
     private String eMail;
 
-    @ManyToOne
-    @JoinColumn(name = "chambre_id")
-    private Chambre chambre;
+//    @ManyToOne
+//    @JoinColumn(name = "chambre_id")
+//    private Chambre chambre;
 
     @OneToMany(mappedBy = "utilisateur", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Reservation> reservations = new ArrayList<>();
@@ -50,13 +50,13 @@ public class Utilisateur {
     }
 
     // Getter et setter pour la chambre
-    public Chambre getChambre() {
-        return chambre;
-    }
-
-    public void setChambre(Chambre chambre) {
-        this.chambre = chambre;
-    }
+//    public Chambre getChambre() {
+//        return chambre;
+//    }
+//
+//    public void setChambre(Chambre chambre) {
+//        this.chambre = chambre;
+//    }
 
     // Getter et setter pour les réservations
     public List<Reservation> getReservations() {

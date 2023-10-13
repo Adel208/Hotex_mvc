@@ -79,18 +79,18 @@
 </head>
 <body>
 <div layout:fragment="content1">
-    <form th:object="${dto}" th:action="@{/admin/clientetreservation}" method="post">
+    <form th:object="${dto}" th:action="@{/admin/addClientEtreservation}" method="post">
         <label for="titre">Titre:</label>
-        <select name="titre" id="titre" th:field="*{reservation.titre}">
-            <option value="Mme." th:selected="${dto.reservation.titre == 'Mme.'}">Mme.</option>
-            <option value="Mr." th:selected="${dto.reservation.titre == 'Mr.'}">Mr.</option>
+        <select name="titre" id="titre" th:field="*{utilisateur.titre}">
+            <option value="Mme." th:selected="${dto.utilisateur.titre == 'Mme.'}">Mme.</option>
+            <option value="Mr." th:selected="${dto.utilisateur.titre == 'Mr.'}">Mr.</option>
         </select>
 
         <label for="nom">Nom:</label>
-        <input name="nom" id="nom" th:field="*{reservation.nom}" type="text">
+        <input name="nom" id="nom" th:field="*{utilisateur.nom}" type="text">
 
         <label for="prenom">Prénom:</label>
-        <input name="prenom" id="prenom" th:field="*{reservation.prenom}" type="text">
+        <input name="prenom" id="prenom" th:field="*{utilisateur.prenom}" type="text">
 
         <label for="dateArrive">Date d'arrivée:</label>
         <input type="date" id="dateArrive" th:field="*{reservation.dateArrivee}">

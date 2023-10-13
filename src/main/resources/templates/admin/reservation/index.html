@@ -43,8 +43,12 @@
                     <input type="hidden" name="id" th:value="${uneReservation.id}"/>
                     <input type="hidden" name="keyword" th:value="${keyword}" />
                     <input type="hidden" name="page" th:value="${currentPage}" />
-                    <button onclick="return confirm('Etes vous sur de vouloir supprimer cet utilisateur?')" class="btn btn-wheat"
-                            type="submit">DEPART</button>
+                    <button onclick="return confirm('Etes vous sur de vouloir supprimer cette reservation?')" class="btn btn-wheat"
+                            type="submit">Supprime</button>
+                </form>
+                <form th:action="@{/admin/reservation/depart}" method="post">
+                    <input type="hidden" name="idReservation" th:value="${uneReservation.id}">
+                    <button class="btn btn-danger">Signaler Départ</button>
                 </form>
                 <a th:href="'/editClient?id=' + ${uneReservation.id} + '&keyword=' + ${keyword} + '&page=' + ${currentPage}"
                    class="btn btn-wheat">Modifier</a>

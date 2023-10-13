@@ -20,9 +20,9 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String titre;
-    private String nom;
-    private String prenom;
+//    private String titre;
+//    private String nom;
+//    private String prenom;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateArrivee;
@@ -56,32 +56,32 @@ public class Reservation {
         this.id = id;
     }
 
-    // Getter et Setter pour titre
-    public String getTitre() {
-        return titre;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-    // Getter et Setter pour nom
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    // Getter et Setter pour prenom
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+//    // Getter et Setter pour titre
+//    public String getTitre() {
+//        return titre;
+//    }
+//
+//    public void setTitre(String titre) {
+//        this.titre = titre;
+//    }
+//
+//    // Getter et Setter pour nom
+//    public String getNom() {
+//        return nom;
+//    }
+//
+//    public void setNom(String nom) {
+//        this.nom = nom;
+//    }
+//
+//    // Getter et Setter pour prenom
+//    public String getPrenom() {
+//        return prenom;
+//    }
+//
+//    public void setPrenom(String prenom) {
+//        this.prenom = prenom;
+//    }
 
     // Getter et Setter pour dateArrivee
     public LocalDate getDateArrivee() {

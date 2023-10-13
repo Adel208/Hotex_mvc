@@ -94,7 +94,7 @@
         </select>
 
         <label for="client">Le client</label>
-        <select name="client" id="client" th:field="*{client}">
+        <select name="client" id="client" th:field="*{utilisateur}">
             <option th:each="unClient : ${clients}" th:text="${unClient.nom.toUpperCase()+' '+unClient.prenom}" th:value="${unClient.id}"></option>
         </select>
         <button>Envoyer</button>

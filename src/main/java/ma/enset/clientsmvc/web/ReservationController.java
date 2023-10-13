@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -65,22 +66,34 @@ public class ReservationController {
         return "/admin/reservation/addClientEtReservation";
     }
 
-    @PostMapping("/admin/create")
-    public String createReservation(@ModelAttribute("reservation") @Valid Reservation reservation, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "admin/reservation/create";
+//    @PostMapping("/admin/create")
+//    public String createReservation(@ModelAttribute("reservation") @Valid Reservation reservation, BindingResult bindingResult) {
+//        if (bindingResult.hasErrors()) {
+//            return "admin/reservation/create";
+//        }
+//
+//
+//
+//        return "redirect:/admin/reservation";
+//    }
+
+    @PostMapping("/admin/reservation/depart")
+    public String signalDepart(@RequestParam Long idReservation){
+        Reservation reservation = reservationService.getReservationById(idReservation);
+        reservation.setStatut("terminé");
+        reservationRepository.save(reservation);
+        for (Chambre chambre: reservation.getChambres()
+             ) {
+            chambre.setStatut(Chambre.Statut.LIBRE);
+            chambreRepository.save(chambre);
         }
-
-
-
         return "redirect:/admin/reservation";
     }
-
 
     @PostMapping("/admin/addClientEtreservation")
     public String storeClientEtReservation(@ModelAttribute @Valid UtilisateurEtReservationDTO dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "admin/reservation/addClientEtReservation";
+            return "admin/reservation/addClientEtreservation";
         }
 
         Utilisateur existingUser = utilisateurRepository.findByeMail(dto.getUtilisateur().getEMail());
@@ -97,18 +110,22 @@ public class ReservationController {
     }
 
     @PostMapping("/admin/reservation")
-    public String store(@ModelAttribute("reservation") @Valid Reservation reservation, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "admin/reservation/create";
-        }
+    public String store(@ModelAttribute("reservation")  Reservation reservation) {
+//        if (bindingResult.hasErrors()) {
+//            return "admin/reservation/create";
+//        }
 
-        Chambre chambre = chambreRepository.findById(reservation.getUtilisateur().getChambre().getId()).orElse(null);
-        if (chambre == null) {
+
+        if (reservation.getChambres().size() == 0) {
             throw new RuntimeException("Chambre introuvable");
         }
+        for (Chambre chambre: reservation.getChambres()
+        ) {
+            chambre.setStatut(Chambre.Statut.OCCUPEE);
+            chambreRepository.save(chambre);
+        }
 
-        chambre.setStatut(Chambre.Statut.OCCUPEE);
-        chambreRepository.save(chambre);
+
         reservationService.saveReservation(reservation);
         return "redirect:/admin/reservation";
     }
