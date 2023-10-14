@@ -8,6 +8,8 @@ import ma.enset.clientsmvc.repositories.ChambreRepository;
 import ma.enset.clientsmvc.repositories.ReservationRepository;
 import ma.enset.clientsmvc.repositories.UtilisateurRepository;
 import ma.enset.clientsmvc.service.ReservationService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,11 +38,22 @@ public class ReservationController {
     }
 
     @GetMapping("/admin/reservation")
-    public String index(Model model) {
+    public String index(Model model,
+                        @RequestParam(name = "page", defaultValue = "0") int page,
+                        @RequestParam(name = "size", defaultValue = "5") int size,
+                        @RequestParam(name = "keyword", defaultValue = "") String keyword) {
+        Page<Utilisateur> pageClients = utilisateurRepository.findByNomIgnoreCaseContains(keyword, PageRequest.of(page, size));
+        model.addAttribute("listClients", pageClients.getContent());
+        model.addAttribute("pages", new int[pageClients.getTotalPages()]);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("keyword", keyword);
+
         List<Reservation> reservations = reservationService.getAll();
         model.addAttribute("reservations", reservations);
+
         return "/admin/reservation/index";
     }
+
 
     @GetMapping("/admin/reservation/add")
     public String add(Model model) {

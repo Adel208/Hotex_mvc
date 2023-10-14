@@ -17,27 +17,17 @@ public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
     private String titre;
-
-
     private String nom;
-
-
     private String prenom;
-
     private String adresse;
     private String numeroTelephone;
-
     @Column(unique = true)
     private String eMail;
-
-
     @OneToMany(mappedBy = "utilisateur", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Reservation> reservations = new ArrayList<>();
 
-    // Getter et setter pour l'adresseMail
+
     public String getAdresseMail() {
         return eMail;
     }
@@ -46,9 +36,6 @@ public class Utilisateur {
         this.eMail = adresseMail;
     }
 
-
-
-    // Getter et setter pour les réservations
     public List<Reservation> getReservations() {
         return reservations;
     }

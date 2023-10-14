@@ -56,7 +56,7 @@ public class Reservation {
         this.id = id;
     }
 
-//    // Getter et Setter pour titre
+
 //    public String getTitre() {
 //        return titre;
 //    }
@@ -65,7 +65,7 @@ public class Reservation {
 //        this.titre = titre;
 //    }
 //
-//    // Getter et Setter pour nom
+//
 //    public String getNom() {
 //        return nom;
 //    }
@@ -83,7 +83,7 @@ public class Reservation {
 //        this.prenom = prenom;
 //    }
 
-    // Getter et Setter pour dateArrivee
+
     public LocalDate getDateArrivee() {
         return dateArrivee;
     }
@@ -146,7 +146,7 @@ public class Reservation {
         this.utilisateur = utilisateur;
     }
 
-    // Getter et Setter pour chambres
+
     public List<Chambre> getChambres() {
         return chambres;
     }
